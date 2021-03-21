@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
 
 import {
-  Paper,
   Grid,
   Box,
   TextField,

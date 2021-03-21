@@ -23,7 +23,7 @@ const Review = ({ id, reviewMethod, reviewAction, editData }) => {
   const history = useHistory();
 
   const [rating, setRating] = useState(() => editData.rating || 0);
-  const [value, setValue] = useState(() => editData.comment || "");
+  const [description, setDescription] = useState(() => editData.comment || "");
   const [title, setTitle] = useState(() => editData.title || "");
   const [file, setFile] = useState(null);
   const [isSubmitting, setSubmitting] = useState(false);
@@ -63,8 +63,8 @@ const Review = ({ id, reviewMethod, reviewAction, editData }) => {
   const handleReviewSubmit = async () => {
     setSubmitting(true);
     const reviewToAdd = { rating };
-    if (value !== "") {
-      reviewToAdd.comment = value;
+    if (description !== "") {
+      reviewToAdd.comment = description;
     }
     if (file) {
       const uploadedImg = await uploadImage(file);
@@ -139,7 +139,7 @@ const Review = ({ id, reviewMethod, reviewAction, editData }) => {
           <Typography variant="body1" color="secondary">
             Leave a review
           </Typography>
-          <Editor {...{ value, setValue }} />
+          <Editor {...{ description, setDescription }} />
         </Grid>
 
         <Grid item>

@@ -11,7 +11,6 @@ const cards = [
     body: 'Create a Destination to save and share all of your travel destinations, and see them on a map',
     btn: 'Create a Destination',
     btnLink: '/contribute',
-    dir: 'row',
     img: contirubuteImg,
   },{
     title: 'Want to be a Guide?',
@@ -36,7 +35,7 @@ const HomeCards = () => {
         <Grid
           item
           container
-          justify={index % 2 ===0 ? "flexx-start" : 'flex-end'}
+          justify={index % 2 ===0 ? "flex-start" : 'flex-end'}
           >
           <AlternateCard
             img={card.img}

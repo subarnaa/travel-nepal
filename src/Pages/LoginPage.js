@@ -67,7 +67,7 @@ const Login = () => {
               </DividerWithText>
             </Box>
 
-            <Box xs={3} xs={2}>
+            <Box xs={3}>
               <LoginForm />
             </Box>
 

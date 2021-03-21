@@ -1,8 +1,10 @@
 import { useHistory } from "react-router-dom";
 import { useQuery, useMutation, queryCache } from "react-query";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import { TextField } from "formik-material-ui";
+import Editor from "../Components/CreateReview/Editor";
 
 import {
   Grid,
@@ -42,6 +44,8 @@ const BeGuidePage = ({ location }) => {
   const classes = useStyles();
 
   const { isLoading, error, data } = useQuery("userInfo", getUser);
+
+
   const [beGuideMutation] = useMutation(beGuide, {
     onSuccess: () => {
       data.role !== "guide"
@@ -60,6 +64,15 @@ const BeGuidePage = ({ location }) => {
     },
   });
 
+  // const [description, setDescription] = useState(() => data ? (data.guideInfo ? data.guideInfo.description : "") : "");
+  const [description, setDescription] = useState("");
+  useEffect(() => {
+    if ( data && data.guideInfo ) {
+      console.log("aairacha");
+      setDescription(data.guideInfo.description);
+    }
+  }, [data])
+
   if (isLoading) return <LoadingIndicator />;
   if (error) history.push("/error");
 
@@ -67,16 +80,20 @@ const BeGuidePage = ({ location }) => {
     instagram: data ? (data.guideInfo ? data.guideInfo.instagram : "") : "",
     facebook: data ? (data.guideInfo ? data.guideInfo.facebook : "") : "",
     twitter: data ? (data.guideInfo ? data.guideInfo.twitter : "") : "",
-    linkedin: data ? (data.guideInfo ? data.guideInfo.linkedin : "") : "",
-    description: data ? (data.guideInfo ? data.guideInfo.description : "") : "",
+    linkedin: data ? (data.guideInfo ? data.guideInfo.linkedin : "") : ""
   };
+
 
   return (
     <Formik
       initialValues={formInitValues}
       // validationSchema={validator}
       onSubmit={async (values, { setSubmitting }) => {
-        await beGuideMutation(values);
+        if ( description == "<p><br></p>" ){
+          return toast.error("Please Enter Description");
+        };
+        console.log(description);
+        await beGuideMutation({...values, description});
         setSubmitting(false);
       }}
     >
@@ -159,15 +176,7 @@ const BeGuidePage = ({ location }) => {
                   </Box>
 
                   <Box mb={3}>
-                    <Field
-                      component={TextField}
-                      variant="outlined"
-                      label="description"
-                      name="description"
-                      fullWidth
-                      multiline
-                      rows={2}
-                    />
+                    <Editor {...{description, setDescription}} />
                   </Box>
 
                   {isSubmitting && <LinearProgress />}

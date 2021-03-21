@@ -1,4 +1,4 @@
-import { Grid, Typography, Paper, Box, Button } from "@material-ui/core";
+import { Grid, Typography, Paper, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GTranslate } from "@material-ui/icons/";
 

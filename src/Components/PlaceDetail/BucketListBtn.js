@@ -1,5 +1,4 @@
-import { Button, IconButton } from "@material-ui/core";
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import { Button } from "@material-ui/core";
 
 const BucketListBtn = ({ placeId }) => {
   return (

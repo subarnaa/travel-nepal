@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import ReactHtmlParser from "react-html-parser";
 
 import {
   Avatar,
@@ -114,7 +115,8 @@ const GuideCard = ({ data, userGuide, beGuideHandler, optOutHandler, id }) => {
                   component="p"
                   align="center"
                 >
-                  {guide.guideInfo.description}
+                  {console.log(guide.guideInfo.description)}
+                  {ReactHtmlParser(guide.guideInfo.description)}
                 </Typography>
               </CardContent>
               <CardActions className={classes.cardAction}>

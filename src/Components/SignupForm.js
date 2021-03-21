@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 
-import { Button, LinearProgress, Box, Grid } from "@material-ui/core";
+import { Button, LinearProgress, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "formik-material-ui";
 

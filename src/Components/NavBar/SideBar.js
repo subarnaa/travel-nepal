@@ -10,7 +10,6 @@ import AddLocationIcon from "@material-ui/icons/AddLocation";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AddToHomeScreenIcon from "@material-ui/icons/AddToHomeScreen";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
-import BookIcon from "@material-ui/icons/Book";
 import PeopleIcon from "@material-ui/icons/People";
 import ExploreIcon from "@material-ui/icons/Explore";
 import NearMeIcon from "@material-ui/icons/NearMe";
