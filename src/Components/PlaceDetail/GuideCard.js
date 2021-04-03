@@ -80,7 +80,7 @@ const GuideCard = ({ data, userGuide, beGuideHandler, optOutHandler, id }) => {
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <Box px={4} mt={4} width={ matches ? "90%" : "100%" } >
+    <Box mb={4}>
       <Typography variant={matches ? "h4" : "h5"}>Guides</Typography>
       <Carousel responsive={responsive}>
         {data.map((guide) => (

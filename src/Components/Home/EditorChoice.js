@@ -18,9 +18,9 @@ const EditorChoice = () => {
   if (isError) return null;
 
   return (
-    <Box mb={4}>
+    <Box mb={4} style={{width: "100%"}}>
       <Box px={2}>
-        {data.length > 0 && <Typography variant="h5">Editor's Pick</Typography>}
+        {data.length > 0 && <Typography variant="h5">Admin's Pick</Typography>}
       </Box>
       <Cards editorData={data} />
     </Box>

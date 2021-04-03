@@ -15,7 +15,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import { getPlaceByQuery } from "../../services/place";
 
-import explore from "../../statics/explore.png";
+import travellers from "../../statics/travellers_pointing.png";
 
 const HeaderSearch = ({ smMatch, mdMatch }) => {
   const history = useHistory();
@@ -40,7 +40,7 @@ const HeaderSearch = ({ smMatch, mdMatch }) => {
   const styles = {
     searchContainer: {
       height: mdMatch ? "60vh" : "40vh",
-      backgroundImage: `url(${explore})`,
+      backgroundImage: `url(${travellers})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "contain",
       backgroundPosition: "center",
@@ -49,13 +49,13 @@ const HeaderSearch = ({ smMatch, mdMatch }) => {
 
   return (
     <Grid container>
-      <Grid item container style={{ padding: "3rem 2.5rem" }}>
-        <Grid container spacing={4}>
+      <Grid item container>
+        <Grid container spacing={2}>
           <Grid
             item
             container
             xs={12}
-            sm={6}
+            sm={7}
             direction="column"
             justify="center"
           >
@@ -89,7 +89,7 @@ const HeaderSearch = ({ smMatch, mdMatch }) => {
             </Grid>
           </Grid>
           <Hidden xsDown>
-            <Grid item xs={6}>
+            <Grid item xs={6} sm={5}>
               <Box style={styles.searchContainer}></Box>
             </Grid>
           </Hidden>

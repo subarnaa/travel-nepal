@@ -16,7 +16,7 @@ const BestDestination = () => {
   if (isError) return null;
 
   return (
-    <Box mb={4} style={{"width":"100%"}}>
+    <Box mb={4} style={{width:"100%"}}>
       <Box px={2}>
         {data.length > 0 && (
           <Typography variant="h5">Top Rated Destinations</Typography>

@@ -22,10 +22,11 @@ import UploadButton from "./UploadButton";
 
 import app from "../../firebase";
 import { addPlace } from "../../services/place";
+import Editor from '../CreateReview/Editor';
 
 const validator = yup.object({
   name: yup.string().required(),
-  description: yup.string().required(),
+  // description: yup.string().required(),
 });
 
 const useStyles = makeStyles({
@@ -44,13 +45,15 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
   const uploadImage = async (img) => {
     try {
       const storageRef = app.storage().ref();
-      const fileRef = storageRef.child(img.name);
+      const fileRef = storageRef.child(img.name+Date.now());
       await fileRef.put(img);
       return fileRef.getDownloadURL();
     } catch (error) {
       console.log(error);
     }
   };
+
+  const [description, setDescription] = useState("");
 
   const mutateAction = placeEdit || addPlace;
 
@@ -105,7 +108,7 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
         await mutatePlaces({
           id: placeData.id || null,
           name: values.name,
-          description: values.description,
+          description: description,
           image: values.img,
           location: values.location,
           type: values.type,
@@ -115,7 +118,7 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
     >
       {({ submitForm, isSubmitting, setValues, values }) => (
         <Form>
-          <Grid container direction="column" spacing={3}>
+          <Grid container direction="column" spacing={2}>
             <Grid item mb={3}>
               <Field
                 className={classes.textFeildStyles}
@@ -127,17 +130,6 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
               />
             </Grid>
 
-            <Grid item mb={3}>
-              <Field
-                component={TextField}
-                variant="outlined"
-                multiline
-                name="description"
-                type="text"
-                label="Description"
-                fullWidth
-              />
-            </Grid>
             <Grid item mb={4} xs={12} md={6}>
               <Box mb={1}>
                 <InputLabel htmlFor="type">Type</InputLabel>
@@ -151,12 +143,14 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
                 }}
                 fullWidth
               >
-                <MenuItem value="religious">Religious</MenuItem>
                 <MenuItem value="landmark">Landmark</MenuItem>
+                <MenuItem value="religious">Religious</MenuItem>
                 <MenuItem value="shopping">Shopping</MenuItem>
               </Field>
             </Grid>
-
+            <Grid item mb={3}>
+              <Editor {...{description, setDescription}} placeholder="Describe the place according to your experince :)"/>
+            </Grid>
             <Grid item mb={4}>
               <Grid
                 container
@@ -183,7 +177,7 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
             </Grid>
 
             {isSubmitting && <LinearProgress />}
-            <Grid item mb={2} alignItems="center" xs={12} sm={4}>
+            <Grid item mb={2} alignItems="center" xs={12}>
               <Button
                 variant="contained"
                 color="primary"
@@ -194,9 +188,8 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
                 {placeEdit ? "Update" : "Add"}
               </Button>
             </Grid>
-
           </Grid>
-                  </Form>
+        </Form>
       )}
     </Formik>
   );

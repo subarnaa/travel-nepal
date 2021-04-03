@@ -7,8 +7,8 @@ import HomeCards from '../Components/Home/HomeCards';
 
 const Home = () => {
   return (
-    <Grid container direction="column" justify="center" alignItems="center" style={{"marginTop": "3rem"}}>
-      <Grid item container direction="column" align="center" justify="center" xs={11}>
+    <Grid container direction="column" justify="center" alignItems="center" style={{"marginTop": "2rem"}}>
+      <Grid item container direction="column" align="center" justify="center" xs={11} style={{ marginBottom: '2rem'}}>
         <HeaderSearch />
       </Grid>
       <Grid item container direction="column" align="center" justify="center" xs={11}>

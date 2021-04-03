@@ -30,7 +30,7 @@ const NoGuide = ({ beGuideHandler, id }) => {
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <Box mx="auto" mt={4} width={matches ? "90%" : "100%" }>
+    <Box mb={4}>
       <Paper>
         <Grid container>
           <Hidden xsDown>

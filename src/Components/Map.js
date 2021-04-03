@@ -7,6 +7,7 @@ import {
   useMapEvent,
 } from "react-leaflet";
 import { Link, Typography, Box } from "@material-ui/core";
+import ReactHtmlParser from 'react-html-parser';
 
 import { greenIcon, redIcon, goldIcon } from "./MapIcons";
 
@@ -56,7 +57,7 @@ const Map = ({ data }) => {
                   src={info.image}
                   alt={info.name}
                 />
-                <Typography variant="body2">{info.description.slice(0, 200).concat("...")}</Typography>
+                <Typography variant="body2">{ReactHtmlParser(info.description.slice(0, 200).concat("..."))}</Typography>
                 <Typography>
                   <Link component={RouterLink} to={`/place/${info.id}`}>
                     View

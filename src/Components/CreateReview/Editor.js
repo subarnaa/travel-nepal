@@ -5,11 +5,11 @@ import { Paper, Box } from "@material-ui/core";
 import "react-quill/dist/quill.snow.css";
 import "../../styles/quill.css";
 
-function Editor({ description, setDescription }) {
+function Editor({ description, setDescription, placeholder }) {
   return (
-    <Box mt={2}>
+    <Box mt={1}>
       <Paper>
-        <ReactQuill theme="snow" value={description} onChange={setDescription} />
+        <ReactQuill placeholder={placeholder} theme="snow" value={description} onChange={setDescription} />
       </Paper>
     </Box>
   );

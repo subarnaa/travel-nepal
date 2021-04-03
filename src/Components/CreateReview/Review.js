@@ -139,7 +139,7 @@ const Review = ({ id, reviewMethod, reviewAction, editData }) => {
           <Typography variant="body1" color="secondary">
             Leave a review
           </Typography>
-          <Editor {...{ description, setDescription }} />
+          <Editor {...{ description, setDescription }} placeholder="Write your review here"/>
         </Grid>
 
         <Grid item>

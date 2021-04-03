@@ -40,15 +40,15 @@ const Review = ({ reviews, id }) => {
   return (
     <Grid container justify="center" alignItems="center" direction="column">
       <Box
-        mx="auto"
-        mt={4}
         p={4}
-        width={matches ? "90%" : "100%"}
+        mb={4}
+        width="100%"
         bgcolor="white.500"
         border={1}
         borderColor="grey.300"
+
       >
-        <Box mb={4}>
+        <Box mb={4} minWidth="250px">
           <Grid container justify="space-between">
             <Grid item>
               <Typography variant={matches ? "h4" : "h5"}>Reviews</Typography>
@@ -75,14 +75,14 @@ const Review = ({ reviews, id }) => {
               <ReviewList currentReviews={currentReviews} placeId={id} />
             </Box>
           </Box>
-        ) : (
-          <Grid container justify="center">
-            <Hidden xsDown>
-              <Grid item xs={6}>
-                <Box style={styles.searchContainer}></Box>
-              </Grid>
-            </Hidden>
-          </Grid>
+        ) : (<Typography variant="h5" align="center">No Reivews Yet</Typography>
+          // <Grid container justify="center">
+          //   <Hidden xsDown>
+          //     <Grid item xs={6}>
+          //       <Box style={styles.searchContainer}></Box>
+          //     </Grid>
+          //   </Hidden>
+          // </Grid>
         )}
         {reviews.length !== 0 && (
           <Pagination

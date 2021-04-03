@@ -79,7 +79,7 @@ function PlaceReviewPlace({ match }) {
                 {data.name}
               </Typography>
               <Typography variant="body1" color="textSecondary">
-                {data.type}
+                {data.type.charAt(0).toUpperCase() + data.type.slice(1)}
               </Typography>
             </Grid>
           </Grid>

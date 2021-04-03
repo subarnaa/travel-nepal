@@ -21,7 +21,6 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
-
 import LoadingIndicator from "../Components/LoadingIndicator";
 
 import { getUser } from "../services/user";
@@ -89,7 +88,7 @@ const BeGuidePage = ({ location }) => {
       initialValues={formInitValues}
       // validationSchema={validator}
       onSubmit={async (values, { setSubmitting }) => {
-        if ( description == "<p><br></p>" ){
+        if ( description === "<p><br></p>" ){
           return toast.error("Please Enter Description");
         };
         console.log(description);
@@ -104,94 +103,109 @@ const BeGuidePage = ({ location }) => {
               <Grid container direction="column" justify="center" spacing={2}>
                 <Grid item xs={12}>
                   <Typography variant="h4" align="center">
-                    Be a guide
+                    Guide Info
                   </Typography>
                 </Grid>
                 <Form>
-                  <Box mb={3}>
-                    <Field
-                      component={TextField}
-                      variant="outlined"
-                      name="instagram"
-                      label="instagram"
-                      fullWidth
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <InstagramIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Box>
-                  <Box mb={3}>
-                    <Field
-                      component={TextField}
-                      variant="outlined"
-                      label="facebook"
-                      name="facebook"
-                      fullWidth
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <FacebookIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Box>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                      <Box >
+                        <Typography variant="h6" style={{'color': 'rgba(0,0,0,0.65)'}}>Describe yourself as a guide</Typography>
+                        <Editor {...{description, setDescription}} placeholder="Describe yourself as a guide"/>
+                      </Box>
+                    </Grid>
 
-                  <Box mb={3}>
-                    <Field
-                      component={TextField}
-                      variant="outlined"
-                      label="twitter"
-                      name="twitter"
-                      fullWidth
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <TwitterIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Box>
+                    <Grid item xs={12} sm={6}>
+                      <Box >
+                        <Field
+                          component={TextField}
+                          variant="outlined"
+                          label="facebook"
+                          name="facebook"
+                          fullWidth
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <FacebookIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </Box>
+                    </Grid>
 
-                  <Box mb={3}>
-                    <Field
-                      component={TextField}
-                      variant="outlined"
-                      label="linkedin"
-                      name="linkedin"
-                      fullWidth
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <LinkedInIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Box>
+                    <Grid item xs={12} sm={6}>
+                      <Box >
+                        <Field
+                          component={TextField}
+                          variant="outlined"
+                          name="instagram"
+                          label="instagram"
+                          fullWidth
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <InstagramIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </Box>
+                    </Grid>
 
-                  <Box mb={3}>
-                    <Editor {...{description, setDescription}} />
-                  </Box>
+                    <Grid item xs={12} sm={6}>
+                      <Box >
+                        <Field
+                          component={TextField}
+                          variant="outlined"
+                          label="twitter"
+                          name="twitter"
+                          fullWidth
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <TwitterIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </Box>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <Box >
+                        <Field
+                          component={TextField}
+                          variant="outlined"
+                          label="linkedin"
+                          name="linkedin"
+                          fullWidth
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <LinkedInIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </Box>
+                    </Grid>
 
                   {isSubmitting && <LinearProgress />}
-
-                  <Box mb={2}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                      disabled={isSubmitting}
-                      onClick={submitForm}
-                    >
-                      {data.role !== "guide" ? "submit" : "update"}
-                    </Button>
-                  </Box>
+                    <Grid item  xs={12}>
+                      <Box mb={2}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          fullWidth
+                          disabled={isSubmitting}
+                          onClick={submitForm}
+                        >
+                          {data.role !== "guide" ? "submit" : "update"}
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </Form>
               </Grid>
             </Paper>
