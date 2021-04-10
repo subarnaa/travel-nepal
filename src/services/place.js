@@ -62,9 +62,14 @@ export const editReview = async (data) => {
   return response.data;
 };
 
-export const deleteReview = async (id) => {
-  const response = await axios.delete(BASE_URL.concat(`/${id}/reviews`), {
-    withCredentials: true,
+export const deleteReview = async ({placeId, reviewId}) => {
+  console.log(reviewId, 'id' , placeId, 'placeId')
+  const response = await axios.delete(BASE_URL.concat(`/${placeId}/reviews`),
+  {
+    data: {
+      id:reviewId,
+      placeId,
+    }
   });
   return response.data;
 };
@@ -83,3 +88,8 @@ export const editPlace = async (placeInfo) => {
   });
   return response.data;
 };
+
+export const getUserPlaces = async (id) => {
+  const response = await axios.post(BASE_URL.concat('/userPlaces'), {withCredentials: true})
+  return response.data;
+}

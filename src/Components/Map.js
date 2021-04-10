@@ -57,7 +57,7 @@ const Map = ({ data }) => {
                   src={info.image}
                   alt={info.name}
                 />
-                <Typography variant="body2">{ReactHtmlParser(info.description.slice(0, 200).concat("..."))}</Typography>
+                <Typography variant="body2">{ReactHtmlParser(info.description.slice(0, 150).concat("..."))}</Typography>
                 <Typography>
                   <Link component={RouterLink} to={`/place/${info.id}`}>
                     View

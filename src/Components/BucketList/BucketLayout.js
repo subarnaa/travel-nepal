@@ -1,22 +1,63 @@
-import { Box, Grid } from "@material-ui/core";
-
+import { Box, Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import BucketCard from "./BucketCard";
+import { Link } from 'react-router-dom';
+
+const useStyles = makeStyles({
+  root: {
+    width: 345,
+    height: 410,
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: "space-between"
+  },
+  media: {
+    height: 225,
+  },
+});
 
 const BucketLayout = ({ bucketListItems }) => {
+  let placeCards = null;
+
+  if ( bucketListItems.length > 0 ) {
+    placeCards = bucketListItems.map((place, index) => {
+      return(
+        <BucketCard
+          data={place}
+          key={index}
+        />
+      )
+    });
+  } else {
+    placeCards =
+    (
+      <Paper style={{ marginTop: '15vh' }}>
+        <Box textAlign="center" m={4}>
+          <Typography variant="h4">You do not have any places in your bucketlist.</Typography>
+          <Typography variant="body1">Start exploring and find your new destination.</Typography>
+          <Box mt={1}>
+            <Button
+              component={Link}
+              to='/contribute'
+              variant="contained"
+              color="primary"
+            >
+              Start Exploring!
+            </Button>
+          </Box>
+        </Box>
+      </Paper>
+    )
+  }
+
   return (
-    <Box mt={6}>
-      <Grid container justify="center" alignContent="center">
-        <Grid item xs={10} md={8}>
-          <Grid container item spacing={2}>
-            {bucketListItems.map((data) => (
-              <Grid key={data.place.id} item xs={12} sm={6} md={4}>
-                <BucketCard data={data} />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
+    <Grid container style={{marginTop: '20px', maxWidth: '100%'}} direction="column" justify="center" alignItems="center" spacing={2}>
+      {bucketListItems.length > 0 ?
+        <Typography variant="h3">Your Places</Typography> : ''
+      }
+      <Grid item container spacing={4} alignContent="center" justify="center" style={{width: 'fit-content'}}>
+        {placeCards}
       </Grid>
-    </Box>
+    </Grid>
   );
 };
 

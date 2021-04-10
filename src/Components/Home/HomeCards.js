@@ -36,6 +36,7 @@ const HomeCards = () => {
           item
           container
           justify={index % 2 ===0 ? "flex-start" : 'flex-end'}
+          key={index}
           >
           <AlternateCard
             img={card.img}

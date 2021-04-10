@@ -21,7 +21,7 @@ const AlternateCard = ({ img, title, body, btn, btnLink, dir = "row" }) => {
   };
 
   return (
-    <Box mb={4} style={{ width: "750px", margin: "0 auto 48px auto;" }}>
+    <Box mb={4} style={{ width: "750px" }}>
       <Paper style={{ padding: "20px" }}>
         <Grid container spacing={5} direction={dir}>
           <Grid

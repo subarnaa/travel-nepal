@@ -20,6 +20,7 @@ import Rating from "../Rating";
 import DialogBox from "../DialogBox";
 
 import { deleteReview } from "../../services/place";
+import EditMenu from '../PlaceDetail/EditMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
   typo: {
     marginBottom: "0.5rem",
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 }));
 
 export default function ReviewCard({
@@ -51,6 +57,8 @@ export default function ReviewCard({
   user,
   title,
   placeId,
+  reviewId,
+  showNumberofReviews=true,
 }) {
   const history = useHistory();
   const [{ user: userInfo }] = useAuth();
@@ -79,7 +87,7 @@ export default function ReviewCard({
     setOpen(false);
   };
   const handleDelete = () => {
-    mutateDeleteReview(placeId);
+    mutateDeleteReview({placeId, reviewId});
     toast.warning("review deleted");
     setOpen(false);
   };
@@ -91,16 +99,21 @@ export default function ReviewCard({
   return (
     <Box>
       <Card className={classes.root} style={{"margin" : "0 auto"}}>
-        <CardHeader
-          avatar={<Avatar src={user.displayPicture} />}
-          title={user.displayName}
-          subheader={(new Date(createdAt)).toString()}
-        />
+        <Box className={classes.header}>
+          <CardHeader
+            avatar={<Avatar src={user.displayPicture} />}
+            title={user.displayName}
+            subheader={(new Date(createdAt)).toString()}
+          />
+          {userInfo && userInfo.user.id === user.id && (
+            <EditMenu handleEdit={pointToEdit} handleDelete={handleClickOpen}/>
+          )}
+        </Box>
         {img && (
           <CardMedia className={classes.media} image={img} alt="user img" />
         )}
         <CardContent>
-          <Rating rating={rating} />
+          <Rating rating={rating} showNumberofReviews={false}/>
           {title && (
             <Typography gutterBottom variant="h5" component="h2">
               {title}

@@ -40,12 +40,12 @@ const Review = ({ reviews, id }) => {
   return (
     <Grid container justify="center" alignItems="center" direction="column">
       <Box
-        p={4}
         mb={4}
         width="100%"
         bgcolor="white.500"
         border={1}
         borderColor="grey.300"
+        style={{padding: matches ? '25px' : '10px'}}
 
       >
         <Box mb={4} minWidth="250px">
@@ -69,20 +69,10 @@ const Review = ({ reviews, id }) => {
         <Box mb={4}>
           <Divider />
         </Box>
-        {reviews.length !== 0 ? (
-          <Box>
-            <Box>
-              <ReviewList currentReviews={currentReviews} placeId={id} />
-            </Box>
+        {reviews.length > 0 && (
+          <Box mb={2}>
+            <ReviewList currentReviews={currentReviews} placeId={id} />
           </Box>
-        ) : (<Typography variant="h5" align="center">No Reivews Yet</Typography>
-          // <Grid container justify="center">
-          //   <Hidden xsDown>
-          //     <Grid item xs={6}>
-          //       <Box style={styles.searchContainer}></Box>
-          //     </Grid>
-          //   </Hidden>
-          // </Grid>
         )}
         {reviews.length !== 0 && (
           <Pagination

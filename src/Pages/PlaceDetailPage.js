@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 
 import PlaceDetailHeader from "../Components/PlaceDetail/PlaceDetailHeader";
 import PlaceDetailMap from "../Components/PlaceDetail/PlaceDetailMap";
-import NoGuide from "../Components/PlaceDetail/NoGuide";
 import Review from "../Components/ReviewList/Review";
 import LoadingIndicator from "../Components/LoadingIndicator";
 import GuideCard from "../Components/PlaceDetail/GuideCard";
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "1.5rem 1.5rem",
     },
     [theme.breakpoints.down("sm")]: {
-      padding: "2rem 1.5rem",
+      padding: "2rem 0.8rem",
       margin: "1.5rem 0.5rem",
     }
   },
@@ -91,7 +90,7 @@ const PlaceDetail = ({ match }) => {
         <Grid item xs={12}>
           <PlaceDetailMap location={data.location} />
         </Grid>
-        <Grid item container xs={12} spacing={4}>
+        <Grid item container xs={12} justify="center">
           {data.guides.length > 0 && (
             <Grid item xs={data.guides.length > 0 ? 12 : 6}>
                 <GuideCard
@@ -103,21 +102,18 @@ const PlaceDetail = ({ match }) => {
                 />
             </Grid>
           )}
-          {data.reviews.length > 0 &&
-            <Grid item xs={12} className={classes.zeroContent}>
-              <Review reviews={data.reviews} id={id} />
-            </Grid>
-          }
-          <Grid item container xs={12} spacing={3} style={{width : '100%'}}>
-            <Grid item xs={12} md={data.guides.length > 0? 12 : 6}>
-              <NoContent
-                title="No Reviews Yet"
-                description="Be the first to review this place."
-                img={noreview}
-                id={id}
-                userRole={data.user}
-              />
-            </Grid>
+          <Grid item container xs={12} spacing={4}>
+            {data.reviews.length === 0 &&
+              <Grid item xs={12} md={data.guides.length > 0? 12 : 6}>
+                <NoContent
+                  title="No Reviews Yet"
+                  description="Be the first to review this place."
+                  img={noreview}
+                  id={id}
+                  userRole={data.user}
+                />
+              </Grid>
+            }
             { data.guides.length === 0 &&
               <Grid item xs={12} md={data.reviews.length > 0 ? 12: 6}>
                 <NoContent
@@ -128,6 +124,11 @@ const PlaceDetail = ({ match }) => {
                   btnHandler={beGuideHandler}
                   userRole={data.user}
                 />
+              </Grid>
+            }
+            {data.reviews.length > 0 &&
+              <Grid item xs={12}>
+                <Review reviews={data.reviews} id={id} />
               </Grid>
             }
           </Grid>

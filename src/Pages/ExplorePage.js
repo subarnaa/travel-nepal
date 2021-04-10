@@ -16,14 +16,15 @@ import { getAllPlaces } from "../services/place";
 
 const useStyles = makeStyles({
   stickToBottom: {
-    position: "absolute",
+    position: "fixed",
     bottom: 0,
     left: 0,
     right: 0,
     marginLeft: "auto",
     marginRight: "auto",
     zIndex: 2,
-    maxWidth: 500,
+    maxWidth: 550,
+    borderRadius: '15px',
   },
 });
 // const ExplorePage = () => {

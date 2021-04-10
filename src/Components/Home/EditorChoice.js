@@ -22,7 +22,7 @@ const EditorChoice = () => {
       <Box px={2}>
         {data.length > 0 && <Typography variant="h5">Admin's Pick</Typography>}
       </Box>
-      <Cards editorData={data} />
+      <Cards editorData={data}/>
     </Box>
   );
 };

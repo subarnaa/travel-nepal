@@ -22,7 +22,7 @@ const Signup = () => {
     window.location.href =
       process.env.REACT_APP_ENV === "development"
         ? "http://localhost:4000/api/auth/google"
-        : "http://app.vnepal.me/api/auth/google";
+        : "http://travelnepal.com/api/auth/google";
   };
 
   return (

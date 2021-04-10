@@ -45,18 +45,11 @@ const Nav = ({ toggleDrawer, handleLogout, user }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{height: '85px', justifyContent: 'center'}}>
         <Toolbar>
           <Box className={classes.title}>
             <Grid container alignItems="center">
-              <Hidden mdUp>
-                <IconButton
-                  aria-label="toggle-drawer"
-                  onClick={toggleDrawer("left", true)}
-                >
-                  <MenuIcon fontSize="large" style={{ color: "white" }} />
-                </IconButton>
-              </Hidden>
+
               <Typography variant="h6">Travel Nepal</Typography>
             </Grid>
           </Box>
@@ -111,9 +104,12 @@ const Nav = ({ toggleDrawer, handleLogout, user }) => {
                 <Button component={Link} to="/contribute" color="inherit">
                   Contribute
                 </Button>
-                {/* <Button component={Link} to="/bucketlist" color="inherit">
+                <Button component={Link} to="/bucketlist" color="inherit">
                   Bucket List
-                </Button> */}
+                </Button>
+                <Button component={Link} to="/myplaces" color="inherit">
+                  My Places
+                </Button>
                 <Button onClick={handleLogout} color="inherit">
                   Logout
                 </Button>
@@ -128,6 +124,14 @@ const Nav = ({ toggleDrawer, handleLogout, user }) => {
                 </Button>
               </>
             )}
+          </Hidden>
+          <Hidden mdUp>
+            <IconButton
+              aria-label="toggle-drawer"
+              onClick={toggleDrawer("left", true)}
+            >
+              <MenuIcon fontSize="large" style={{ color: "white" }} />
+            </IconButton>
           </Hidden>
         </Toolbar>
       </AppBar>

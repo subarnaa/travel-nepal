@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
+import ReactHtmlParser from 'react-html-parser';
 import {
   Button,
   Card,
   CardActionArea,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
+  Grid,
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Rating from "../Rating";
 import { queryCache, useMutation } from "react-query";
 import { toast } from "react-toastify";
 
@@ -18,18 +18,14 @@ import { updateBucketItem } from "../../services/bucketlist";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: 345,
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: "space-between"
   },
   media: {
-    height: 200,
-    width: "100%",
-    objectFit: "cover",
+    height: 225,
   },
-  content: {
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-  }
 }));
 
 const BucketCard = ({ data }) => {
@@ -51,29 +47,29 @@ const BucketCard = ({ data }) => {
   });
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea component={Link} to={`/place/${data.place.id}`}>
-        <CardHeader
-          title={
-            data.place.name.length > 20
-              ? data.place.name.slice(0, 20).concat("...")
-              : data.place.name
-          }
-          subheader={data.place.type}
-        />
-        <CardMedia className={classes.media} image={data.place.image} />
-      </CardActionArea>
-      <CardContent>
-        <Rating rating={data.place.rating} numReviews={data.place.numReviews} />
-        <Typography variant="body2" color="textSecondary" component="p" className={classes.content}>
-          {data.place.description}
-        </Typography>
-      </CardContent>
-      <CardActions>
+    <Grid item>
+      <Card className={classes.root}>
+        <CardActionArea component={Link} to={`/place/${data.place.id}`}>
+          <CardMedia
+            className={classes.media}
+            image={data.place.image}
+            title={data.place.name}
+          />
+          <CardContent style={{paddingBottom: '0'}}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {data.place.name}
+            </Typography>
+            {data.place.description.length > 150
+              ? ReactHtmlParser(data.place.description.slice(0, 150).concat("..."))
+              : ReactHtmlParser(data.place.description)}
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
         {data.status ? (
           <Button
             size="small"
             color="secondary"
+            fullWidth
             onClick={() =>
               updateBucketListMutation({ id: data.place.id, status: false })
             }
@@ -84,6 +80,7 @@ const BucketCard = ({ data }) => {
           <Button
             size="small"
             color="primary"
+            fullWidth
             onClick={() =>
               updateBucketListMutation({ id: data.place.id, status: true })
             }
@@ -92,7 +89,8 @@ const BucketCard = ({ data }) => {
           </Button>
         )}
       </CardActions>
-    </Card>
+      </Card>
+    </Grid>
   );
 };
 

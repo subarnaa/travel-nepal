@@ -25,7 +25,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
-import pattern from "../../statics/pattern.svg";
+import pattern from "../../statics/pattern.jpg";
 import { getUser } from "../../services/user";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     minHeight: "400px",
     backgroundImage: `url(${pattern})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat'
   },
   icons: {
     display: "flex",
@@ -109,15 +111,9 @@ const GuideCard = ({ data, userGuide, beGuideHandler, optOutHandler, id }) => {
                 >
                   {guide.displayName}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  // color="textSecondary"
-                  component="p"
-                  align="center"
-                >
-                  {console.log(guide.guideInfo.description)}
+                <Box align="center">
                   {ReactHtmlParser(guide.guideInfo.description)}
-                </Typography>
+                </Box>
               </CardContent>
               <CardActions className={classes.cardAction}>
                 <Box className={classes.icons}>
@@ -184,7 +180,7 @@ const GuideCard = ({ data, userGuide, beGuideHandler, optOutHandler, id }) => {
           </Box>
         ))}
       </Carousel>
-      <Box my={2}>
+      <Box my={2} ml={2}>
         {userInfo && userInfo.role === "guide" ? (
           userGuide ? (
             <Button

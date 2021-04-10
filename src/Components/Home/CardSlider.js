@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import ReactHtmlParser from 'react-html-parser';
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -16,7 +17,7 @@ import Rating from "../Rating";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "300px" ,
-    height: "425px",
+    minHeight: "440px",
     [theme.breakpoints.down("xs")]: {
       width: "94vw",
     },
@@ -30,6 +31,17 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: red[400],
   },
+  cardAction: {
+    height: "100%",
+    "&:hover": {
+      backgroundColor: '#fcfffd'
+    }
+  },
+  noMargin: {
+    "& p": {
+      marginTop: 0,
+    },
+  }
 }));
 
 const responsive = {
@@ -60,13 +72,17 @@ const CardSlider = ({ editorData }) => {
       {editorData.map((data) => (
         <Box key={data.id} p={2}>
           <Card className={classes.root}>
-            <CardActionArea component={Link} to={`/place/${data.id}`}>
+            <CardActionArea component={Link} to={`/place/${data.id}`} className={classes.cardAction}>
               <CardHeader title={data.name} subheader={data.type.charAt(0).toUpperCase() + data.type.slice(1)} />
               <CardMedia className={classes.media} image={data.image} />
+              <CardContent>
+                <Rating rating={data.rating} numReviews={data.numReviews} />
+              </CardContent>
+              <CardContent style={{ padding: '0 1rem', textAlign: 'left'}} className={classes.noMargin}>
+                {console.log(data.description)}
+                {ReactHtmlParser(data.description.slice(0,100).concat('...') )}
+              </CardContent>
             </CardActionArea>
-            <CardContent>
-              <Rating rating={data.rating} numReviews={data.numReviews} />
-            </CardContent>
           </Card>
         </Box>
       ))}

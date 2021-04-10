@@ -4,7 +4,7 @@ import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
 import StarHalfRoundedIcon from "@material-ui/icons/StarHalfRounded";
 
-const Rating = ({ rating, numReviews, fontSize = "small" }) => {
+const Rating = ({ rating, numReviews, fontSize = "small", showNumberofReviews = true }) => {
   const isFloat = function (n) {
     return parseInt(n) !== n;
   };
@@ -21,14 +21,14 @@ const Rating = ({ rating, numReviews, fontSize = "small" }) => {
           <StarRoundedIcon
             key={index}
             fontSize={fontSize}
-            style={{ color: green[500] }}
+            color="primary"
           />
         ))}
 
         {/* add halfstar if needed */}
         {isFloat(rating) && (
           <StarHalfRoundedIcon
-            style={{ color: green[500] }}
+            color="secondary"
             fontSize={fontSize}
           />
         )}
@@ -37,21 +37,20 @@ const Rating = ({ rating, numReviews, fontSize = "small" }) => {
         {[...Array(5 - Math.ceil(rating))].map((_, index) => (
           <StarBorderRoundedIcon
             key={index}
-            style={{ color: green[500] }}
+            color="primary"
             fontSize={fontSize}
           />
         ))}
       </Grid>
-      {numReviews !== 0 && (
-        <Grid item>
-          {numReviews && (
+        <Grid item style={{ marginLeft: '10px'}}>
+          {console.log('review', showNumberofReviews)}
+          {showNumberofReviews &&
             <Typography>
-              {numReviews}
-              {numReviews < 2 ? " review" : " reviews"}
+              {numReviews ? `${numReviews}` : '0'}
+              {numReviews === 1 ? " review" : " reviews"}
             </Typography>
-          )}
+          }
         </Grid>
-      )}
     </Grid>
   );
 };

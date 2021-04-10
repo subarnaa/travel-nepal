@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingIndicator from "./Components/LoadingIndicator";
+import Footer from './Components/Footer'
 
 import ReactGA from "react-ga";
 
@@ -28,6 +29,7 @@ const fo0foPage = lazy(() => import("./Pages/404page"));
 const BeGuide = lazy(() => import("./Pages/BeGuidePage"));
 const AdminUsersPage = lazy(() => import("./Pages/AdminUsersPage"));
 const AdminPlacePage = lazy(() => import("./Pages/AdminPlacePage"));
+const MyPlaces = lazy(() => import("./Pages/MyPlaces"));
 
 function App() {
   useEffect(() => {
@@ -62,6 +64,7 @@ function App() {
           <AuthRoute path="/place/:id" component={PlaceDetailPage} />
           <AuthRoute path="/bucketlist" component={BucketListPage} />
           <AuthRoute path="/beguide" component={BeGuide} />
+          <AuthRoute path="/myplaces" component={MyPlaces} />
           <AuthRoute path="/notfound" component={NotFoundPage} />
           <AuthRoute path="/error" component={ErrorPage} />
           <GuestRoute path="/email/confirm" component={EmailConfirmPage} />
@@ -69,6 +72,7 @@ function App() {
           <AuthRoute exact path="/" component={HomePage} />
           <AuthRoute path="*" component={fo0foPage} />
         </Switch>
+        {/* <Footer /> */}
       </Router>
     </Suspense>
   );

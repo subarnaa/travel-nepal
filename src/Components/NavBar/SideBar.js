@@ -16,10 +16,11 @@ import NearMeIcon from "@material-ui/icons/NearMe";
 
 import SideBarList from "./SideBarList";
 import { Divider } from "@material-ui/core";
+import { Place } from "@material-ui/icons"
 
 const useStyles = makeStyles({
   list: {
-    width: 250,
+    width: '250px',
   },
   fullList: {
     width: "auto",
@@ -73,6 +74,11 @@ export default function SideBar({ toggleDrawer, state, handleLogout, user }) {
                 text="Bucket List"
                 lnk="/bucketlist"
               /> */}
+              <SideBarList
+                Icon={Place}
+                text="My Places"
+                lnk="/myplaces"
+              />
               <Divider />
               <SideBarList
                 Icon={ExitToAppIcon}
@@ -102,7 +108,7 @@ export default function SideBar({ toggleDrawer, state, handleLogout, user }) {
   return (
     <div>
       <Drawer
-        anchor={"left"}
+        anchor={"right"}
         open={state["left"]}
         onClose={toggleDrawer("left", false)}
       >
