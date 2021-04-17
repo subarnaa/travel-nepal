@@ -67,7 +67,6 @@ const BeGuidePage = ({ location }) => {
   const [description, setDescription] = useState("");
   useEffect(() => {
     if ( data && data.guideInfo ) {
-      console.log("aairacha");
       setDescription(data.guideInfo.description);
     }
   }, [data])

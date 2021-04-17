@@ -86,6 +86,7 @@ const GuideCard = ({ data, userGuide, beGuideHandler, optOutHandler, id }) => {
       <Typography variant={matches ? "h4" : "h5"}>Guides</Typography>
       <Carousel responsive={responsive}>
         {data.map((guide) => (
+          guide.guideInfo.verified &&
           <Box key={guide.id} py={2} ml={2}>
             <Card className={classes.card}>
               <Box className={classes.center}>
@@ -182,24 +183,35 @@ const GuideCard = ({ data, userGuide, beGuideHandler, optOutHandler, id }) => {
       </Carousel>
       <Box my={2} ml={2}>
         {userInfo && userInfo.role === "guide" ? (
-          userGuide ? (
-            <Button
-              variant="outlined"
-              color="secondary"
-              size="large"
-              onClick={optOutHandler}
-            >
-              Remove me as a guide
-            </Button>
+          userInfo.guideInfo.verified ? (
+            userGuide ? (
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="large"
+                onClick={optOutHandler}
+              >
+                Remove me as a guide
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                color="primary"
+                size="large"
+                onClick={beGuideHandler}
+              >
+                Guide this place
+              </Button>
+            )
           ) : (
             <Button
-              variant="outlined"
-              color="primary"
-              size="large"
-              onClick={beGuideHandler}
-            >
-              Guide this place
-            </Button>
+                variant="outlined"
+                color="primary"
+                size="large"
+                disabled
+              >
+                Guide Verification Pending
+              </Button>
           )
         ) : (
           <Button

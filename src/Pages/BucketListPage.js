@@ -2,16 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 
 import { makeStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-
-import BucketLayout from "../Components/BucketList/BucketLayout";
-import EmptyBucketListPage from "./EmptyBucketListPage";
 import LoadingIndicator from "../Components/LoadingIndicator";
-
-import ExploreIcon from "@material-ui/icons/Explore";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import { getAllBucketList } from "../services/bucketlist";
 import { Box, Button, ButtonGroup, Grid, Paper, Typography } from "@material-ui/core";

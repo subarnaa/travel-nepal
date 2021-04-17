@@ -43,6 +43,7 @@ const BucketListBtn = ({ inBucketList, placeId }) => {
       variant="outlined"
       color="secondary"
       onClick={() => inBucketList ? mutateRemoveFromBucket(placeId) : mutateAddToBucket(placeId)}
+      style={{marginBottom: '14px'}}
     >
       {inBucketList ? 'Remove from Bucketlist' : 'Add to Bucketlist'}
     </Button>

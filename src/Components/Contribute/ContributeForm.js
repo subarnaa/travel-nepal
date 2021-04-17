@@ -72,6 +72,7 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
       toast.error(errMessage);
     },
   });
+  console.log(placeData.description)
 
   return (
     <Formik
@@ -149,7 +150,11 @@ const ContributeForm = ({ placeData = {}, placeEdit }) => {
               </Field>
             </Grid>
             <Grid item mb={3}>
-              <Editor {...{description, setDescription}} placeholder="Describe the place according to your experince :)"/>
+              {placeData && placeData.description ?
+                <Editor description={placeData.description} setDescription={setDescription} placeholder="Describe the place according to your experince :)"/>
+                :
+                <Editor {...{description, setDescription}} placeholder="Describe the place according to your experince :)"/>
+              }
             </Grid>
             <Grid item mb={4}>
               <Grid

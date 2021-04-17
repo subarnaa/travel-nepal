@@ -22,7 +22,6 @@ import BucketListBtn from "./BucketListBtn";
 import EditMenu from './EditMenu';
 
 import { deletePlace } from "../../services/place";
-import axios from "axios";
 
 const useStyles = makeStyles( (theme) => ({
   imageStyles: {

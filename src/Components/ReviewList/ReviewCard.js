@@ -122,16 +122,6 @@ export default function ReviewCard({
 
           {ReactHtmlParser(comment)}
         </CardContent>
-        {userInfo && userInfo.user.id === user.id && (
-          <CardActions disableSpacing>
-            <IconButton aria-label="edit review" onClick={pointToEdit}>
-              <EditIcon />
-            </IconButton>
-            <IconButton aria-label="delete review" onClick={handleClickOpen}>
-              <DeleteIcon />
-            </IconButton>
-          </CardActions>
-        )}
       </Card>
 
       <DialogBox

@@ -59,3 +59,7 @@ export const updatePlace = async (data) => {
   );
   return response.data;
 };
+
+const getPendingGuides = async () => {
+
+}

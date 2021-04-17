@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     color: red[400],
   },
   cardAction: {
-    height: "100%",
+    height: "440px",
     "&:hover": {
       backgroundColor: '#fcfffd'
     }
@@ -46,19 +46,19 @@ const useStyles = makeStyles((theme) => ({
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1240 },
+    breakpoint: { max: 3000, min: 1333 },
     items: 4,
   },
   tablet: {
-    breakpoint: { max: 1240, min: 936 },
+    breakpoint: { max: 1333, min: 1000 },
     items: 3,
   },
   tabletSec: {
-    breakpoint: { max: 936, min: 648 },
+    breakpoint: { max: 1000, min: 676 },
     items: 2,
   },
   mobile: {
-    breakpoint: { max: 648, min: 0 },
+    breakpoint: { max: 676, min: 0 },
     items: 1,
     slidesToSlide: 1, // optional, default to 1.
   },
@@ -70,7 +70,7 @@ const CardSlider = ({ editorData }) => {
   return (
     <Carousel responsive={responsive} swipeable infinite>
       {editorData.map((data) => (
-        <Box key={data.id} p={2}>
+        <Box key={data.id}>
           <Card className={classes.root}>
             <CardActionArea component={Link} to={`/place/${data.id}`} className={classes.cardAction}>
               <CardHeader title={data.name} subheader={data.type.charAt(0).toUpperCase() + data.type.slice(1)} />
