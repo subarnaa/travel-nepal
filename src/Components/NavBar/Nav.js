@@ -87,6 +87,20 @@ const Nav = ({ toggleDrawer, handleLogout, user }) => {
                       >
                         Destinations
                       </MenuItem>
+                      <MenuItem
+                        onClick={handleClose}
+                        component={Link}
+                        to="/admin/guides/verified"
+                      >
+                        Verified Guides
+                      </MenuItem>
+                      <MenuItem
+                        onClick={handleClose}
+                        component={Link}
+                        to="/admin/guides/pending"
+                      >
+                        Pending Guide Requests
+                      </MenuItem>
                     </Menu>
                   </>
                 )}

@@ -12,6 +12,8 @@ import AddToHomeScreenIcon from "@material-ui/icons/AddToHomeScreen";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import PeopleIcon from "@material-ui/icons/People";
 import ExploreIcon from "@material-ui/icons/Explore";
+import VerifiedUserOutlinedIcon from '@material-ui/icons/VerifiedUserOutlined';
+import NotVerifiedOutlinedIcon from '@material-ui/icons/HourglassEmptyOutlined';
 import NearMeIcon from "@material-ui/icons/NearMe";
 import BookIcon from "@material-ui/icons/Book";
 
@@ -55,6 +57,16 @@ export default function SideBar({ toggleDrawer, state, handleLogout, user }) {
                     Icon={ExploreIcon}
                     text="Destinations"
                     lnk="/admin/places"
+                  />
+                  <SideBarList
+                    Icon={VerifiedUserOutlinedIcon}
+                    text="Verified Guides"
+                    lnk="/admin/guides/verified"
+                  />
+                  <SideBarList
+                    Icon={NotVerifiedOutlinedIcon}
+                    text="Pending Guide Requests"
+                    lnk="/admin/guides/pending"
                   />
                   <Divider />
                 </>

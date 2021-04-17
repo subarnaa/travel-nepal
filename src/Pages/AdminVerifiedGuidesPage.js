@@ -8,28 +8,13 @@ import { tableIcons } from "../Components/Table/TableIconsFull";
 
 import Fo0FoPage from "./404page";
 
-import { getAllUser, deleteUser, updateUser } from "../services/admin";
+import { updateUser, getVerifiedGuides } from "../services/admin";
 
 const AdminUsersPlace = () => {
-  const [mutateDeleteUserAdmin] = useMutation(deleteUser, {
-    onSuccess: () => {
-      queryCache.refetchQueries("adminGetAllUser");
-      toast.warn("user deleted");
-    },
-    onError: (error) => {
-      const errMessage =
-        error.response && error.response.data.error
-          ? error.response.data.error.message
-          : error.message;
-
-      toast.error(errMessage);
-    },
-  });
-
   const [mutateUpdateUserAdmin] = useMutation(updateUser, {
     onSuccess: () => {
-      queryCache.refetchQueries("adminGetAllUser");
-      toast.success("user updated");
+      queryCache.refetchQueries("adminGetVerifiedGuides");
+      toast.success("User status updated");
     },
     onError: (error) => {
       const errMessage =
@@ -41,7 +26,7 @@ const AdminUsersPlace = () => {
     },
   });
 
-  const { isLoading, data, error } = useQuery("adminGetAllUser", getAllUser, {
+  const { isLoading, data, error } = useQuery("adminGetVerifiedGuides", getVerifiedGuides, {
     retry: false,
   });
 
@@ -52,11 +37,11 @@ const AdminUsersPlace = () => {
   if (isLoading || !data) return <LoadingIndicator />;
 
   return (
-    <Box margin="1.5rem 1rem">
+    <Box  margin="1.5rem 1rem">
       <MaterialTable
         style={{padding: '0 0.8rem'}}
         icons={tableIcons}
-        title="All Users"
+        title="Verified Guides"
         columns={[
           {
             field: "displayPicture",
@@ -67,8 +52,7 @@ const AdminUsersPlace = () => {
           },
           { title: "Full Name", field: "displayName", type: "string" },
           { title: "Email", field: "email", type: "string" },
-          { title: "Verified", field: "verified", type: "boolean" },
-          { title: "Admin", field: "isAdmin", type: "boolean" },
+          { title: "Guide Verification", field: "userInfo.verified", type: "boolean" },
           {
             title: "Role",
             field: "role",
@@ -83,7 +67,6 @@ const AdminUsersPlace = () => {
           exportButton: true,
         }}
         editable={{
-          onRowDelete: (oldData) => mutateDeleteUserAdmin(oldData.id),
           onRowUpdate: (newData, oldData) =>
             mutateUpdateUserAdmin({ newData, oldData }),
         }}

@@ -61,8 +61,9 @@ const AdminPlacePage = () => {
   if (isLoading || !data) return <LoadingIndicator />;
 
   return (
-    <Box mt={2}>
+    <Box margin="1.5rem 1rem">
       <MaterialTable
+        style={{padding: '0 0.8rem'}}
         icons={tableIcons}
         title="All Destinations"
         columns={[

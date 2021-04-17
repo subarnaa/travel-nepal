@@ -6,6 +6,7 @@ import LoadingIndicator from "./Components/LoadingIndicator";
 import Footer from './Components/Footer'
 
 import ReactGA from "react-ga";
+import AdminPendingGuides from "./Pages/AdminPendingGuidesPage"
 
 const AuthRoute = lazy(() => import("./Components/Route/AuthRoute"));
 const GuestRoute = lazy(() => import("./Components/Route/GuestRoute"));
@@ -30,6 +31,8 @@ const BeGuide = lazy(() => import("./Pages/BeGuidePage"));
 const AdminUsersPage = lazy(() => import("./Pages/AdminUsersPage"));
 const AdminPlacePage = lazy(() => import("./Pages/AdminPlacePage"));
 const MyPlaces = lazy(() => import("./Pages/MyPlaces"));
+const AdminVerifiedGuidesPage = lazy(() => import("./Pages/AdminVerifiedGuidesPage"))
+const AdminPendingGuidesPage = lazy(() => import("./Pages/AdminPendingGuidesPage"));
 
 function App() {
   useEffect(() => {
@@ -53,6 +56,8 @@ function App() {
           <GuestRoute path="/password/recover/:id" component={ResetPassPage} />
           <AuthRoute path="/admin/users" component={AdminUsersPage} />
           <AuthRoute path="/admin/places" component={AdminPlacePage} />
+          <AuthRoute path="/admin/guides/verified" component={AdminVerifiedGuidesPage} />
+          <AuthRoute path="/admin/guides/pending" component={AdminPendingGuidesPage} />
           <AuthRoute path="/explore" component={ExplorePage} />
           <AuthRoute path="/contribute" component={ContributePage} />
           <AuthRoute path="/place/edit/:id" component={PlaceEditPage} />

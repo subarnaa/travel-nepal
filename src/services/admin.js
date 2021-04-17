@@ -60,6 +60,16 @@ export const updatePlace = async (data) => {
   return response.data;
 };
 
-const getPendingGuides = async () => {
+export const getVerifiedGuides = async () => {
+  const response = await axios.get(BASE_URL.concat("/users/guides/verified"), {
+    withCredentials: true,
+  });
+  return response.data;
+}
 
+export const getPendingGuides = async () => {
+  const response = await axios.get(BASE_URL.concat("/users/guides/pending"), {
+    withCredentials: true,
+  });
+  return response.data;
 }

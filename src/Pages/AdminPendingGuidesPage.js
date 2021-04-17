@@ -8,28 +8,13 @@ import { tableIcons } from "../Components/Table/TableIconsFull";
 
 import Fo0FoPage from "./404page";
 
-import { getAllUser, deleteUser, updateUser } from "../services/admin";
+import { getPendingGuides, updateUser } from "../services/admin";
 
-const AdminUsersPlace = () => {
-  const [mutateDeleteUserAdmin] = useMutation(deleteUser, {
-    onSuccess: () => {
-      queryCache.refetchQueries("adminGetAllUser");
-      toast.warn("user deleted");
-    },
-    onError: (error) => {
-      const errMessage =
-        error.response && error.response.data.error
-          ? error.response.data.error.message
-          : error.message;
-
-      toast.error(errMessage);
-    },
-  });
-
+const AdminPendingGuides = () => {
   const [mutateUpdateUserAdmin] = useMutation(updateUser, {
     onSuccess: () => {
       queryCache.refetchQueries("adminGetAllUser");
-      toast.success("user updated");
+      toast.success("User status updated");
     },
     onError: (error) => {
       const errMessage =
@@ -41,7 +26,7 @@ const AdminUsersPlace = () => {
     },
   });
 
-  const { isLoading, data, error } = useQuery("adminGetAllUser", getAllUser, {
+  const { isLoading, data, error } = useQuery("adminGetAllUser", getPendingGuides, {
     retry: false,
   });
 
@@ -56,7 +41,7 @@ const AdminUsersPlace = () => {
       <MaterialTable
         style={{padding: '0 0.8rem'}}
         icons={tableIcons}
-        title="All Users"
+        title="Pending Guide Requests"
         columns={[
           {
             field: "displayPicture",
@@ -67,8 +52,7 @@ const AdminUsersPlace = () => {
           },
           { title: "Full Name", field: "displayName", type: "string" },
           { title: "Email", field: "email", type: "string" },
-          { title: "Verified", field: "verified", type: "boolean" },
-          { title: "Admin", field: "isAdmin", type: "boolean" },
+          { title: "Guide Verification", field: "guideInfo.verified", type: "boolean" },
           {
             title: "Role",
             field: "role",
@@ -83,7 +67,6 @@ const AdminUsersPlace = () => {
           exportButton: true,
         }}
         editable={{
-          onRowDelete: (oldData) => mutateDeleteUserAdmin(oldData.id),
           onRowUpdate: (newData, oldData) =>
             mutateUpdateUserAdmin({ newData, oldData }),
         }}
@@ -92,4 +75,4 @@ const AdminUsersPlace = () => {
   );
 };
 
-export default AdminUsersPlace;
+export default AdminPendingGuides;
